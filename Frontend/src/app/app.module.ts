@@ -11,18 +11,21 @@ import { ApiService } from './services/api.service';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { ChartComponent } from './components/chart/chart.component';
+import { UsersComponent } from './components/users/users.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
-  { path: 'chart', component: ChartComponent }
+  { path: 'chart', component: ChartComponent },
+  { path: 'users', component: UsersComponent }
 ]
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    ChartComponent
+    ChartComponent,
+    UsersComponent
   ],
   imports: [
     BrowserModule,

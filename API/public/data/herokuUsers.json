@@ -1,0 +1,84 @@
+[{
+        "_id": "5a60b0d4c2be80001452dc4a",
+        "email": "pawel.kubik@wp.pl",
+        "name": "Paweł",
+        "description": "wiadomo kto :)",
+        "created_at": "2018-01-18T14:36:04.000Z",
+        "confirmed": false
+    },
+    {
+        "_id": "5a60b6f3c2be80001452dc60",
+        "email": "agadom11@o2.pl",
+        "name": "Aga",
+        "description": "lalala",
+        "created_at": "2018-01-18T15:02:11.000Z",
+        "confirmed": false
+    },
+    {
+        "_id": "5a60fed9858ccb0014be0194",
+        "email": "basia.hacel@wp.pl",
+        "name": "Barbarella",
+        "description": ":*",
+        "created_at": "2018-01-18T20:08:57.000Z",
+        "confirmed": true,
+        "loggedIn": [
+            "2018-01-18T20:08:57.000Z"
+        ]
+    },
+    {
+        "_id": "5a66c10aacfb373894047b72",
+        "email": "test16.01",
+        "name": "test16.01",
+        "description": "-",
+        "confirmed": false
+    },
+    {
+        "_id": "5a757ea3584f616498ad3460",
+        "email": "a",
+        "name": "a",
+        "description": "a",
+        "loggedIn": [],
+        "confirmed": false
+    },
+    {
+        "_id": "5a606907818a8806582138d7",
+        "email": "pablo",
+        "name": "Pablito",
+        "description": "Admin/Creator",
+        "created_at": "2018-01-18T09:29:43.000Z",
+        "confirmed": true,
+        "loggedIn": [
+            "2018-01-18T09:29:43.000Z",
+            "2018-02-03T16:10:30.224Z",
+            "2018-02-03T16:22:29.265Z",
+            "2018-02-03T16:43:00.351Z",
+            "2018-02-03T16:43:08.942Z",
+            "2018-02-03T17:33:54.047Z",
+            "2018-02-03T18:04:47.672Z",
+            "2018-02-03T19:01:18.277Z",
+            "2018-02-05T04:54:42.172Z",
+            "2018-02-12T06:37:15.646Z"
+        ]
+    },
+    {
+        "_id": "5a609de9c2be80001452dc45",
+        "email": "u2483354@mvrht.net",
+        "name": "Uladzimir",
+        "description": "qweqweqwewqewq",
+        "created_at": "2018-01-18T13:15:21.000Z",
+        "confirmed": true,
+        "loggedIn": [
+            "2018-01-18T13:15:21.000Z"
+        ]
+    },
+    {
+        "_id": "5a80bbcbd5d4e4167cd10760",
+        "name": "d3user",
+        "email": "d3user",
+        "loggedIn": [
+            "2018-02-11T21:55:23.000Z"
+        ],
+        "created_at": "2018-02-11T21:55:23.000Z",
+        "confirmed": true
+    }
+]

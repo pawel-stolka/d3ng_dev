@@ -6,11 +6,21 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class ApiService {
   private _db = DbConfig.path;
+  error;
 
   constructor(private http: Http) { }
 
   getAll() {
     let path = `${this._db}/data`
+    console.log('path ' + path)
+    return this.http.get(path)
+      .toPromise()
+      .then(this.extractData)
+      .catch(this.handleError)
+  }
+
+  getUsers() {
+    let path = `${this._db}/herokuUsers`
     console.log('path ' + path)
     return this.http.get(path)
       .toPromise()
@@ -25,6 +35,7 @@ export class ApiService {
   }
 
   private handleError(error: any): Promise<any> {
+    this.error = error;
     console.error('An error occurred', error);
     return Promise.reject(error.message || error);
   }
