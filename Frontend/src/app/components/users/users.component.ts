@@ -81,18 +81,33 @@ export class UsersComponent implements OnInit {
         })
 
       g.append('circle')
+        .transition()
+        .delay(function(d,i) {return i * 100})
+        .duration(1000)
         .attr('r', (d) => d.x/2)
+        
         .style('fill', 'pink')
         .style('opacity', 0.5)
         .style('stroke', 'black')
         .style('stroke-width', '2px')
+
+        .transition()
+        .duration(500)
+        .attr("r", (d) => d.x/4)
       
       g.append('text')
-      .text((d) => `${d.name} (${d.x},${d.y})`)
-      .attr('text-anchor', 'middle')
-      .attr('transform', (d) => `translate(0,${d.x/2})`)
-      .attr('font-size', '12px')
-      .attr('class','bubbles')
+        .transition()
+        .delay(function(d,i) {return i * 100})
+        .duration(1000)
+
+        .text((d) => `${d.name} (${d.x},${d.y})`)
+        .attr('text-anchor', 'middle')
+        .attr('transform', (d) => `translate(0,${d.x/2})`)
+        .attr('font-size', '10px')
+        .attr('class','bubbles')
+        .transition()
+        .duration(500)
+        .attr('transform', (d) => `translate(0,${d.x/4})`)
       
     }
   }
