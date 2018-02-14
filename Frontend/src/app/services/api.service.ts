@@ -11,7 +11,7 @@ export class ApiService {
   constructor(private http: Http) { }
 
   getAll() {
-    let path = `${this._db}/data`
+    let path = `${this._db}/dataXY`
     console.log('path ' + path)
     return this.http.get(path)
       .toPromise()

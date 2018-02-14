@@ -22,6 +22,14 @@ app.get('/data', function (req, res) {
     res.send(JSON.stringify(obj));
 })
 
+app.get('/dataXY', function (req, res) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.setHeader('Content-Type', 'application/json');
+
+    var obj = JSON.parse(fs.readFileSync('public/data/dataXY.json'));
+    res.send(JSON.stringify(obj));
+})
+
 app.get('/herokuUsers', function (req, res) {
     res.header("Access-Control-Allow-Origin", "*");
     res.setHeader('Content-Type', 'application/json');
