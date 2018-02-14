@@ -14,6 +14,10 @@ import { ChartComponent } from './components/chart/chart.component';
 import { UsersComponent } from './components/users/users.component';
 import { ForceComponent } from './components/force/force.component';
 
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material';
+import { MatCardModule } from '@angular/material/card';
+
 const appRoutes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
@@ -33,7 +37,10 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     RouterModule.forRoot(appRoutes),
-    HttpModule
+    HttpModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatCardModule
   ],
   providers: [D3Service, ApiService],
   bootstrap: [AppComponent]

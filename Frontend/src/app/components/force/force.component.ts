@@ -51,9 +51,11 @@ export class ForceComponent implements OnInit, AfterViewInit {
     this.color = this.d3.scaleOrdinal(this.d3.schemeCategory10);
     
     this.simulation = this.d3.forceSimulation()
-        .force("link", this.d3.forceLink().id(function(d) { return d.id; }))
+        .force("link", this.d3.forceLink().id(function(d:any) { 
+          console.log(d)
+          return d.id; }))
         .force("charge", this.d3.forceManyBody())
-        .force("center", this.d3.forceCenter(width / 2, height / 2));
+        .force("center", this.d3.forceCenter(width / 2, height / 2))
     
         // var xydata = data.map(function(d) { 
         //   return { x: d.x, y: d.y, r: d.count }
@@ -81,27 +83,27 @@ export class ForceComponent implements OnInit, AfterViewInit {
     //   return { nodes: d.nodes, links: d.links }
     // }) // d.links.value * 2})
     this.link = this.svg.append("g")
-    .attr("class", "links")
-    .selectAll("line")
-    // .data(bubbles.links)
-    .data(graph.links)
-    .enter()
-    .append("line")
-      .attr("stroke-width", function(d) { 
-        return Math.sqrt(d.value); });
+      .attr("class", "links")
+      .selectAll("line")
+      // .data(bubbles.links)
+      .data(graph.links)
+      .enter()
+      .append("line")
+        .attr("stroke-width", function(d) { 
+          return Math.sqrt(d.value); });
 
     this.node = this.svg.append("g")
-    .attr("class", "nodes")
-    .selectAll("circle")
-    .data(graph.nodes)
-    .enter()
-    .append("circle")
-      .attr("r", 30)
-      .attr("fill", (d)=> { return this.color(d.group); })
-      .call(this.d3.drag()
-          .on("start", (d)=>{return this.dragstarted(d)})
-          .on("drag", (d)=>{return this.dragged(d)})
-          // .on("end", (d)=>{return this.dragended(d)})
+      .attr("class", "nodes")
+      .selectAll("circle")
+      .data(graph.nodes)
+      .enter()
+      .append("circle")
+        .attr("r", 30)
+        .attr("fill", (d)=> { return this.color(d.group); })
+        .call(this.d3.drag()
+            .on("start", (d)=>{return this.dragstarted(d)})
+            .on("drag", (d)=>{return this.dragged(d)})
+            // .on("end", (d)=>{return this.dragended(d)})
   )
 
     this.node.append("title")
@@ -109,7 +111,7 @@ export class ForceComponent implements OnInit, AfterViewInit {
 
     this.simulation
       .nodes(graph.nodes)
-      .on("tick", ()=>{return this.ticked()})
+      .on("tick", ()=>{ return this.ticked()})
 
     this.simulation.force("link")
       .links(graph.links)
