@@ -14,6 +14,9 @@ export class UsersComponent implements OnInit {
   private parentNativeElement: any;
   private error;
 
+  private width = 800
+  private height = 400
+
   constructor(
     element: ElementRef,
     d3Service: D3Service,
@@ -25,13 +28,13 @@ export class UsersComponent implements OnInit {
   ngOnInit() {
     this.error=null;
     this.loadData()
-      .then(() => this.loadSvg()
+      .then(() => this.loadD3()
     )
     .catch((err) => this.error = `error: ${this.apiService.error}`)
   }
 
   loadData() {
-    return this.apiService.getUsers()
+    return this.apiService.getAll()
       .then(
         data => {
           this.apiData = data;
@@ -39,10 +42,11 @@ export class UsersComponent implements OnInit {
       )
   }
 
-  loadSvg() {
+  loadD3() {
     
         let d3 = this.d3;
         let d3ParentElement: Selection<any,any,any,any> ;
+        
     
         if (this.parentNativeElement !== null) {
           // console.log(this.parentNativeElement)
@@ -50,18 +54,19 @@ export class UsersComponent implements OnInit {
           console.log("loadSvg()")
           d3ParentElement = d3.select(this.parentNativeElement);
     
+
           d3ParentElement
-            .append("ul")
-            .selectAll('li')
+            .append('svg')
+            .attr('width', this.width)
+            .attr('height', this.height)
+            .attr('class', 'bar')
+            .selectAll('circle')
             .data(this.apiData)
             .enter()
-            .append('li')
-            .attr("class", "bar")
-            .style("width", function(d){return d.count * 10 + "px"})
-            .style("outline", "1px solid black")
-            .text(function (d: Data) {
-              return `${d.count} => ${d.name}: ${d.status}`;
-            })
+            .append('circle')
+            .attr('cx', (d) => d.count * 10)
+            .attr('cy', (d) => d.count * 2)
+            .attr('r', (d) => d.count)
             
         }
       }
