@@ -10,7 +10,11 @@
     background-color: blueviolet;
 }
 
+.bckg2 {
+    background-color: rgb(197, 146, 245);
+}
+
 .bubbles {
-    font-size: 15px;
+    font-size: 12px;
     font-family: 'Verdana'
 }

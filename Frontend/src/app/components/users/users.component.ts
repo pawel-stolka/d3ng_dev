@@ -54,7 +54,7 @@ export class UsersComponent implements OnInit {
       let data = this.apiData
 
       var xydata = data.map(function(d) { 
-        return { x: d.x, y: d.y }
+        return { x: d.x, y: d.y, r: d.count }
       })
 
       var min = d3.min(xydata, (d) => d.x )
@@ -68,6 +68,7 @@ export class UsersComponent implements OnInit {
         .append('svg')
         .attr('width', this.width)
         .attr('height', this.height)
+        .attr('class','bckg2')
 
       var g = d3.select('svg')
         .selectAll('g')
@@ -80,34 +81,40 @@ export class UsersComponent implements OnInit {
           return ret
         })
 
+      var radiusMin = d3.min(xydata, (d) => d.r)
+      var radiusMax = d3.max(xydata, (d) => d.r)
+      var radiusScale = d3.scaleLinear()
+        .domain([radiusMin, radiusMax])
+        .range([10, 100])
+
       g.append('circle')
-        .transition()
-        .delay(function(d,i) {return i * 100})
-        .duration(1000)
-        .attr('r', (d) => d.x/2)
-        
+        .attr('r', (d) => radiusScale(d.count))
         .style('fill', 'pink')
         .style('opacity', 0.5)
         .style('stroke', 'black')
         .style('stroke-width', '2px')
 
-        .transition()
-        .duration(500)
-        .attr("r", (d) => d.x/4)
-      
-      g.append('text')
-        .transition()
-        .delay(function(d,i) {return i * 100})
-        .duration(1000)
-
-        .text((d) => `${d.name} (${d.x},${d.y})`)
+       g.append('text')
+        // .text((d) => `${d.name} (${d.x},${d.y}) ${radiusScale(d.count)}`)
+        .text((d) => {
+          let _r = radiusScale(d.count);
+          let r = Math.round(_r * 100) / 100;
+          return `r=${r}`
+        })
         .attr('text-anchor', 'middle')
-        .attr('transform', (d) => `translate(0,${d.x/2})`)
-        .attr('font-size', '10px')
+        .attr('transform', (d) => {
+          var y = d.x/2 + 15
+          var res = `translate(0,${y})`
+          return res
+        })
         .attr('class','bubbles')
-        .transition()
-        .duration(500)
-        .attr('transform', (d) => `translate(0,${d.x/4})`)
+
+      // g.append('text')
+      //   .text((d) => `${d.name} (${d.x},${d.y})`)
+      //   .attr('text-anchor', 'middle')
+      //   .attr('transform', (d) => `translate(0,${d.x/2})`)
+      //   .attr('font-size', '10px')
+      //   .attr('class','bubbles')
       
     }
   }
