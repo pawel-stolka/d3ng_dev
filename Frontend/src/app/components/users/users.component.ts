@@ -92,6 +92,7 @@ export class UsersComponent implements OnInit {
       .attr('text-anchor', 'middle')
       .attr('transform', (d) => `translate(0,${d.x/2})`)
       .attr('font-size', '12px')
+      .attr('class','bubbles')
       
     }
   }
