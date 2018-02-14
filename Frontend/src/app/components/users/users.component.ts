@@ -4,7 +4,7 @@ import { ApiService } from '../../services/api.service';
 import { Data } from '../../shared/Data';
 
 @Component({
-  selector: 'app-users',
+  selector: 'users',
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.css']
 })

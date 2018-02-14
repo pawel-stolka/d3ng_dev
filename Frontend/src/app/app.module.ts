@@ -12,12 +12,14 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { ChartComponent } from './components/chart/chart.component';
 import { UsersComponent } from './components/users/users.component';
+import { ForceComponent } from './components/force/force.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'chart', component: ChartComponent },
-  { path: 'users', component: UsersComponent }
+  { path: 'users', component: UsersComponent },
+  { path: 'force', component: ForceComponent }
 ]
 
 @NgModule({
@@ -25,7 +27,8 @@ const appRoutes: Routes = [
     AppComponent,
     HomeComponent,
     ChartComponent,
-    UsersComponent
+    UsersComponent,
+    ForceComponent
   ],
   imports: [
     BrowserModule,
