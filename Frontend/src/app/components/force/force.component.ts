@@ -3,6 +3,7 @@ import { D3Service, D3, Selection } from 'd3-ng2-service';
 import { ApiService } from '../../services/api.service';
 import { Data } from '../../shared/Data';
 import { miserables } from '../../shared/miserables';
+import { bubbles } from '../../shared/bubbles';
 
 @Component({
   selector: 'app-force',
@@ -54,7 +55,13 @@ export class ForceComponent implements OnInit, AfterViewInit {
         .force("charge", this.d3.forceManyBody())
         .force("center", this.d3.forceCenter(width / 2, height / 2));
     
-    this.render(miserables);
+        // var xydata = data.map(function(d) { 
+        //   return { x: d.x, y: d.y, r: d.count }
+        // })  
+
+    
+        this.render(bubbles);
+    // this.render(miserables);
   }
 
   ticked() {
@@ -70,19 +77,26 @@ export class ForceComponent implements OnInit, AfterViewInit {
   }
 
   render(graph){
+    // var bubbles = graph.map(function(d) { 
+    //   return { nodes: d.nodes, links: d.links }
+    // }) // d.links.value * 2})
     this.link = this.svg.append("g")
     .attr("class", "links")
     .selectAll("line")
+    // .data(bubbles.links)
     .data(graph.links)
-    .enter().append("line")
-      .attr("stroke-width", function(d) { return Math.sqrt(d.value); });
+    .enter()
+    .append("line")
+      .attr("stroke-width", function(d) { 
+        return Math.sqrt(d.value); });
 
     this.node = this.svg.append("g")
     .attr("class", "nodes")
     .selectAll("circle")
     .data(graph.nodes)
-    .enter().append("circle")
-      .attr("r", 5)
+    .enter()
+    .append("circle")
+      .attr("r", 30)
       .attr("fill", (d)=> { return this.color(d.group); })
       .call(this.d3.drag()
           .on("start", (d)=>{return this.dragstarted(d)})
@@ -102,7 +116,8 @@ export class ForceComponent implements OnInit, AfterViewInit {
   }
 
     dragstarted(d) {
-        if (!this.d3.event.active) this.simulation.alphaTarget(0.3).restart();
+        if (!this.d3.event.active) 
+          this.simulation.alphaTarget(0.3).restart();
         d.fx = d.x;
         d.fy = d.y;
       }
@@ -113,7 +128,8 @@ export class ForceComponent implements OnInit, AfterViewInit {
       }
       
       dragended(d) {
-        if (!this.d3.event.active) this.simulation.alphaTarget(0);
+        if (!this.d3.event.active) 
+          this.simulation.alphaTarget(0.05);
         d.fx = null;
         d.fy = null;
       }
