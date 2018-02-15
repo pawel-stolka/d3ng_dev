@@ -17,13 +17,15 @@ import { ForceComponent } from './components/force/force.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material';
 import { MatCardModule } from '@angular/material/card';
+import { Force2Component } from './components/force2/force2.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'chart', component: ChartComponent },
   { path: 'users', component: UsersComponent },
-  { path: 'force', component: ForceComponent }
+  { path: 'force', component: ForceComponent },
+  { path: 'force2', component: Force2Component }
 ]
 
 @NgModule({
@@ -32,7 +34,8 @@ const appRoutes: Routes = [
     HomeComponent,
     ChartComponent,
     UsersComponent,
-    ForceComponent
+    ForceComponent,
+    Force2Component
   ],
   imports: [
     BrowserModule,
