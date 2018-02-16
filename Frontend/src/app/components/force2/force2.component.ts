@@ -13,6 +13,7 @@ import { nodes } from '../../shared/nodes';
 })
 export class Force2Component implements OnInit {
   private apiData = [];
+  private newApiData;// = [];
   private d3: D3;
   private parentNativeElement: any;
   private error;
@@ -40,6 +41,8 @@ export class Force2Component implements OnInit {
     this.loadData()
       .then(() => this.loadD3())
       .catch((err) => this.error = `error: ${this.apiService.error}`)
+
+    
   }
 
   ngAfterViewInit(): void {
@@ -64,6 +67,9 @@ export class Force2Component implements OnInit {
         //   return { x: d.x, y: d.y, r: d.count }
         // })  
         
+        var _sData = this.newApiData
+        
+        // this.render(_sData);
         this.render(nodes);
     // this.render(miserables);
   }
@@ -81,6 +87,11 @@ export class Force2Component implements OnInit {
   }
 
   render(graph){
+    // console.log(graph)
+    // console.log(this.newApiData)
+    
+
+
     // var bubbles = graph.map(function(d) { 
     //   return { nodes: d.nodes, links: d.links }
     // }) // d.links.value * 2})
@@ -106,11 +117,13 @@ export class Force2Component implements OnInit {
         .attr('cx', (d,i) => { return xPart * (i + 1/2) })// (i * xPart)+ xPart/2 })
         .attr('cy', (d,i) => { return this.height/2 })
         .attr("fill", (d)=> this.color(d.group))
+        .attr('text', 'fsd')
         // .call(this.d3.drag()
             // .on("start", (d)=>{return this.dragstarted(d)})
             // .on("drag", (d)=>{return this.dragged(d)})
             // .on("end", (d)=>{return this.dragended(d)})
   // )
+  console.log(graph)
 }
 
 dragstarted(d) {
@@ -170,8 +183,29 @@ dragstarted(d) {
       .then(
         data => {
           this.apiData = data;
+        })
+      .then( () => {
+        var nodes = {
+          "nodes": [
+            {"name": "Basia"},
+            {"name": "Pablo"},
+            {"name": "Hania"}
+          ]
         }
-      )
+        console.log(nodes)
+
+        var _data = this.apiData.map(d => {
+          return { "name": d.name }
+        })
+        console.log(_data)
+        var data = {
+          "nodes": _data
+        }
+        this.newApiData = data
+        console.log(this.newApiData)
+        // console.log(nodes)
+
+      })
   }
 
   loadD3() {

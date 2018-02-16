@@ -104,15 +104,29 @@ export class ForceComponent implements OnInit, AfterViewInit {
       .attr("fill", (d) => {
         return this.color(d.group);
       })
+      
       .call(this.d3.drag()
-        .on("start", (d) => {
-          return this.dragstarted(d)
-        })
-        .on("drag", (d) => {
-          return this.dragged(d)
-        })
-        // .on("end", (d)=>{return this.dragended(d)})
+        .on("start", (d) => { return this.dragstarted(d) })
+        .on("drag", (d) => { return this.dragged(d) })
+        .on("end", (d)=>{return this.dragended(d)})
       )
+      
+      // ------ from /users (!) -----------
+      // g.append('text')
+      // // .text((d) => `${d.name} (${d.x},${d.y}) ${radiusScale(d.count)}`)
+      // .text((d) => {
+      //   let _r = radiusScale(d.count);
+      //   let r = Math.round(_r * 100) / 100;
+      //   return `r=${r}`
+      // })
+      // .attr('text-anchor', 'middle')
+      // .attr('transform', (d) => {
+      //   var y = d.x/2 + 15
+      //   var res = `translate(0,${y})`
+      //   return res
+      // })
+      // .attr('class','bubbles') 
+      // ------------------------------
 
     this.node.append("title")
       .text(function (d) {
