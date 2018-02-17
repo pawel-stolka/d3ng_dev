@@ -18,6 +18,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material';
 import { MatCardModule } from '@angular/material/card';
 import { Force2Component } from './components/force2/force2.component';
+import { EventsComponent } from './components/events/events.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -25,7 +26,8 @@ const appRoutes: Routes = [
   { path: 'chart', component: ChartComponent },
   { path: 'users', component: UsersComponent },
   { path: 'force', component: ForceComponent },
-  { path: 'force2', component: Force2Component }
+  { path: 'force2', component: Force2Component },
+  { path: 'events', component: EventsComponent }
 ]
 
 @NgModule({
@@ -35,7 +37,9 @@ const appRoutes: Routes = [
     ChartComponent,
     UsersComponent,
     ForceComponent,
-    Force2Component
+    Force2Component,
+    EventsComponent,
+    // EventsComponent
   ],
   imports: [
     BrowserModule,

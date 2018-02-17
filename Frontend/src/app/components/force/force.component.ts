@@ -39,6 +39,8 @@ export class ForceComponent implements OnInit, AfterViewInit {
     this.loadData()
       .then(() => this.loadD3())
       .catch((err) => this.error = `error: ${this.apiService.error}`)
+
+      
   }
 
   ngAfterViewInit(): void {
@@ -110,6 +112,8 @@ export class ForceComponent implements OnInit, AfterViewInit {
         .on("drag", (d) => { return this.dragged(d) })
         .on("end", (d)=>{return this.dragended(d)})
       )
+
+      
       
       // ------ from /users (!) -----------
       // g.append('text')
