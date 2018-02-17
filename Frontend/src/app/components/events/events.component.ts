@@ -8,6 +8,7 @@ import { ApiService } from '../../services/api.service';
   styleUrls: ['./events.component.css']
 })
 export class EventsComponent implements OnInit, AfterViewInit {
+  counter: number
   private d3: D3;
   private parentNativeElement: any;
   private error;
@@ -16,6 +17,7 @@ export class EventsComponent implements OnInit, AfterViewInit {
   svg;
   color;
   apiData
+  circles = []
 
   private width = 800
   private height = 400
@@ -29,6 +31,7 @@ export class EventsComponent implements OnInit, AfterViewInit {
      }
 
   ngOnInit() {
+    this.counter=0;
     this.error = null;
     this.loadD3()
     this.color = this.d3.scaleOrdinal(this.d3.schemeCategory10);
@@ -46,58 +49,43 @@ export class EventsComponent implements OnInit, AfterViewInit {
     var width = +this.svg.attr("width");
     var height = +this.svg.attr("height");
 
-    // this.drawShape()
-    // this.clickSvg()
-    var _svg = this.svg//.select('g')
-console.log(_svg)
-    
     this.getCoords()
   }
 
-  /*
-  drawShape() {
-    this.svg
+  drawShape(x,y) {
+    this.counter++
+    var g = this.svg
       .append('g')
+
+      g  
       .append('circle')
       .attrs({
-        r: 50,
-        cx: this.width/2,
-        cy: this.height/2,
-        fill: 'teal'
+        r: 5,
+        cx: x,
+        cy: y,
+        fill: 'green'//() => this.color()
       })
-      .on('click', () => {
-        var circle = this.svg.select('circle')
-        circle.attrs({
-          fill: 'red'
-        })  
-        var evX = this.d3.event.layerX,
-            evY = this.d3.event.layerY;
-        
-        console.log(evX, evY);
-   
+      .transition() // First fade to green.
+      .duration(250)
+      .attrs({
+        r: 40
       })
-    console.log(this.svg);
-  }
-  */
-
-  drawShape(x,y) {
-    this.svg
-    .append('g')
-    .append('circle')
-    .attrs({
-      r: 5,
-      cx: x,
-      cy: y,
-      fill: () => this.color()
-    })
-    .transition() // First fade to green.
-    // .delay(50)
-    .duration(250)
-    // .easeLinear(250)
-    .attrs({
-      r: 50
-    })
-    // .style("fill", "green")
+    
+      g  
+      .append('text')
+      .text(this.counter)
+      // .style("fill", "blue")
+      .transition() // First fade to green.
+      .duration(500)
+      .attrs({
+        x: x,
+        y: y,
+        'font-family': 'sans-serif',
+        'font-size': '12px',
+        'fill': 'white'
+        // 'anchor-point': 'middle'
+      })
+    
   }
 
   getCoords() {
