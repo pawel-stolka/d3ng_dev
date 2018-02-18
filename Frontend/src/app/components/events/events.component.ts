@@ -49,6 +49,10 @@ export class EventsComponent implements OnInit, AfterViewInit {
     var width = +this.svg.attr("width");
     var height = +this.svg.attr("height");
 
+    var simulation = this.d3.forceSimulation()
+      .force("x", this.d3.forceX(width / 2).strength(0.05))
+      .force("y", this.d3.forceY(height / 2).strength(0.05))
+
     this.getCoords()
   }
 

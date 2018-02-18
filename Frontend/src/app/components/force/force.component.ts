@@ -110,7 +110,7 @@ export class ForceComponent implements OnInit, AfterViewInit {
       .call(this.d3.drag()
         .on("start", (d) => { return this.dragstarted(d) })
         .on("drag", (d) => { return this.dragged(d) })
-        .on("end", (d)=>{return this.dragended(d)})
+        // .on("end", (d)=>{return this.dragended(d)})
       )
 
       

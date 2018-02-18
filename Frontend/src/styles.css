@@ -22,10 +22,10 @@
 
 .links line {
     stroke: #999;
-    stroke-opacity: 0.2;
+    stroke-opacity: 0.8;
   }
   
   .nodes circle {
-    stroke: #fff;
-    stroke-width: 1.5px;
+    stroke: rgb(230, 247, 192);
+    stroke-width: 5px;
   }

@@ -19,6 +19,7 @@ import { MatButtonModule } from '@angular/material';
 import { MatCardModule } from '@angular/material/card';
 import { Force2Component } from './components/force2/force2.component';
 import { EventsComponent } from './components/events/events.component';
+import { BubblesComponent } from './components/bubbles/bubbles.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -27,7 +28,8 @@ const appRoutes: Routes = [
   { path: 'users', component: UsersComponent },
   { path: 'force', component: ForceComponent },
   { path: 'force2', component: Force2Component },
-  { path: 'events', component: EventsComponent }
+  { path: 'events', component: EventsComponent },
+  { path: 'bubbles', component: BubblesComponent }
 ]
 
 @NgModule({
@@ -39,6 +41,7 @@ const appRoutes: Routes = [
     ForceComponent,
     Force2Component,
     EventsComponent,
+    BubblesComponent,
     // EventsComponent
   ],
   imports: [
