@@ -35,6 +35,7 @@ app.get('/herokuUsers', function (req, res) {
     res.setHeader('Content-Type', 'application/json');
 
     var obj = JSON.parse(fs.readFileSync('public/data/herokuUsers.json'));
+    console.log(obj)
     res.send(JSON.stringify(obj));
 })
 
