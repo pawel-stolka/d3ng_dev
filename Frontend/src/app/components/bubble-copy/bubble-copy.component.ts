@@ -99,7 +99,33 @@ export class BubbleCopyComponent implements OnInit {
       .attr('r', (d) => d.counter * 15)
       .style("stroke","green")
       .style("stroke-width", 2)
-      .style("fill", "none");
+      // .style("stroke-dasharray", ("10,5")) // make the stroke dashed
+      // .style("fill", "none")
+      .style("fill", "red")
+      .style("fill-opacity", .25)
+
+      .on("mouseover", function(d,i) {
+        console.log(d,i)
+        let circles = svg
+        // .append('circle')
+        // .select(this)
+        .selectAll('circle')
+        .transition()
+        .duration(250)
+        .style("stroke-dasharray", ("10,5"))
+        .attr('r', (d) => { return d.counter * 15 + 5 })
+        // .style("cursor", "none")    
+        console.log('on!')
+
+        let selText = svg.selectAll('text')
+        .text((d) => {
+          let fullname = d.name,
+              logged = d.loggedIn.length;
+          let firLet = fullname.substr(0,1)
+  
+          return `${fullname} - ${logged}`;
+        })
+      })
 
     // svg
     this.textElems = svg
@@ -113,6 +139,46 @@ export class BubbleCopyComponent implements OnInit {
       })
       .attr('text-anchor', 'middle')
       .attr('alignment-baseline', 'middle')
+
+      
+      // on hover 
+      /*
+      var node = vis.selectAll("circle.node")
+      .data(nodes)
+      .enter().append("g")
+      .attr("class", "node")
+
+      //MOUSEOVER
+      .on("mouseover", function(d,i) {
+        if (i>0) {
+          //CIRCLE
+          d3.select(this).selectAll("circle")
+          .transition()
+          .duration(250)
+          .style("cursor", "none")     
+          .attr("r", circleWidth+3)
+          .attr("fill",palette.orange);
+
+          //TEXT
+          d3.select(this).select("text")
+          .transition()
+          .style("cursor", "none")     
+          .duration(250)
+          .style("cursor", "none")     
+          .attr("font-size","1.5em")
+          .attr("x", 15 )
+          .attr("y", 5 )
+        } else {
+          //CIRCLE
+          d3.select(this).selectAll("circle")
+          .style("cursor", "none")     
+
+          //TEXT
+          d3.select(this).select("text")
+          .style("cursor", "none")     
+        }
+      })
+      */
   }
     //Set up tooltip
 // var tip = this.d3.tip()
