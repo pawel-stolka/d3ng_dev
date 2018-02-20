@@ -3,11 +3,11 @@ import { D3Service, D3, Selection } from 'd3-ng2-service';
 import { ApiService } from '../../services/api.service';
 
 @Component({
-  selector: 'bubbles',
-  templateUrl: './bubbles.component.html',
-  styleUrls: ['./bubbles.component.css']
+  selector: 'bubble-copy',
+  templateUrl: './bubble-copy.component.html',
+  styleUrls: ['./bubble-copy.component.css']
 })
-export class BubblesComponent implements OnInit, AfterViewInit {
+export class BubbleCopyComponent implements OnInit {
   private apiData = [];
   private d3: D3;
   private parentNativeElement: any;
@@ -22,7 +22,8 @@ export class BubblesComponent implements OnInit, AfterViewInit {
   distance;
   valueMin;
   valueMax;
-  
+  textElems;
+
   constructor(
     element: ElementRef,
     d3Service: D3Service,
@@ -45,50 +46,6 @@ export class BubblesComponent implements OnInit, AfterViewInit {
     var height = +this.svg.attr("height");
     this.distance = 2;
     this.orientSvg()
-
-    
-    // var logged = this.apiData['loggedIn'].length
-    // console.log(logged)
-    // var logMin = this.d3.min(this.apiData)
-    // console.log(this.loggedMin, this.loggedMax)
-    // var exArr = [2, 4, 12, 2];
-    // var exMin = this.d3.min(exArr)//, d => d.counter)
-    // var exMax = this.d3.max(exArr)//, d => d.counter)
-    // console.log(exMin, exMax)
-
-    // var valueMin = this.d3.min(this.apiData, d => d.loggedIn)
-    // var valueMax = this.d3.max(this.apiData, d => d.loggedIn)
-    
-
-      // .attr('r', (d) => 
-      // {
-      //   var res = d.counter * 5
-      //   console.log(`r=${res}`)
-      //   return res;
-      // })
-
-      // .force("link", this.d3.forceLink().id(function (d: any) {
-      //   console.log(d)
-      //   return d.id;
-      // }))
-      // .force("charge", this.d3.forceManyBody())
-      // .force("center", this.d3.forceCenter(width / 2, height / 2))
-      // .force("collide", this.d3.forceCollide((d) => { return 30 })
-        // .iterations(10))
-      
-      // .force('x', this.d3.forceX(startX).strength(0.05))
-      // .force('y', this.d3.forceY(startY).strength(0.05))
-      // .force("collide", this.d3.forceCollide((d:any) => {
-      //   var result = radiusScale(d.loggedIn.length);
-      //   console.log(result*10)
-      //   return 60// result;
-      // }))
-
-
-    
-
-
-        // this.render(bubbles);
   }
 
   orientSvg() {
@@ -116,62 +73,57 @@ export class BubblesComponent implements OnInit, AfterViewInit {
       .attr("cy", function (d) {
         return d.y;
       });
+
+      this.textElems
+      .attr("x", function (d) {
+        // console.log(d.x)
+        return d.x;
+      })
+      .attr("y", function (d) {
+        return d.y;
+      });
   }
 
   loadCircles() {
-    this.circles = this.svg.selectAll('svg')
-      // .append('g')
+    console.log(this.svg)
+    let svg = this.svg
+      .selectAll('svg')
       .data(this.apiData)
       .enter()
       .append('g')
     
-    this.circles = this.svg.selectAll('g')
-      .data(this.apiData)
-      // .append('g')
-    // this.circles
-    // .selectAll('g')
+    this.circles = svg
       .append('circle')
       .attr('cx', (d) => d.x)// 100)
       .attr('cy', (d) => d.y)// 200)
-      .attr('r', (d) => 
-      {
-        var res = d.counter * 15
-        // console.log(`r=${res}`)
-        return res;
-      })
-      // .attr('r', (d) => d.counter * 13)
+      .attr('r', (d) => d.counter * 15)
       .style("stroke","green")
-      // .attr("fill", "green")
       .style("stroke-width", 2)
       .style("fill", "none");
 
-    this.svg.selectAll('g')
-    // .data(this.apiData)
+    // svg
+    this.textElems = svg
       .append('text')
-      .text((d) => `${d.name} - ${d.loggedIn.length}`)
-      .attr('transform', (d) => { 
-          console.log(d.x, d.y)
-          // return 'translate(' + d.x + ','+ d.y +')' 
-          return 'translate('+d.x+',' + d.loggedIn.length * 50 + ')'
-        })
-    
-    // this.svg.selectAll('g')
-    //   .append('text')
-    //   .text((d) => `${d.name} - ${d.loggedIn.length}`)
-    //   .attr('transform', (d,i) => { 
-    //     let x = 50,
-    //         y = 50;
-    //     return `translate(${x},${y})` 
-    //   })
-      // .attr('transform', (d) => { 
-      //   console.log(d.x)
-      //   return 'translate(' + d.x + ','+ d.y +')' })
+      .text((d) => {
+        let fullname = d.name,
+            logged = d.loggedIn.length;
+        let firLet = fullname.substr(0,1)
 
-    
-
-    console.log(`yep circles`)
-    console.log(this.circles)
+        return `${firLet} ${logged}`;
+      })
+      .attr('text-anchor', 'middle')
+      .attr('alignment-baseline', 'middle')
   }
+    //Set up tooltip
+// var tip = this.d3.tip()
+// .attr('class', 'd3-tip')
+// .offset([-10, 0])
+// .html(function (d) {
+// return  d.name + "";
+// })
+// svg.call(tip);
+//     console.log(`yep circles`)
+//     console.log(this.circles)
 
   ready() {
     console.log('ready')
@@ -210,10 +162,6 @@ export class BubblesComponent implements OnInit, AfterViewInit {
 
     this.simulation.nodes(this.apiData)
       .on('tick', () => { return this.ticked()})//this.apiData)})
-  }
-
-  render(graph) {
-    //
   }
 
   loadData() {

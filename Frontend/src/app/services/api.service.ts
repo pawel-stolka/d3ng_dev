@@ -7,6 +7,7 @@ import 'rxjs/add/operator/toPromise';
 export class ApiService {
   private _db = DbConfig.path;
   error;
+  //    prod: 'mongodb://user:user@ds135039.mlab.com:35039/ngbubbles'
 
   constructor(private http: Http) { }
 
