@@ -19,6 +19,7 @@ export class BubblesComponent implements OnInit, AfterViewInit {
   simulation;
   circles;
   svgStart;
+  distance
   loggedMin;
   loggedMax;
   
@@ -40,43 +41,65 @@ export class BubblesComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this.svg = this.d3.select("svg");
-    
     var width = +this.svg.attr("width");
     var height = +this.svg.attr("height");
-    
+    this.distance = 2;
     this.orientSvg()
 
     let startX = this.svgStart.centerX;// width/2;
     let startY = this.svgStart.centerY;//  height/2;
-    console.log(this.svgStart)
-    console.log(startX, startY)
+    // console.log(this.svgStart)
+    console.log(`startX, startY: ${startX}, ${startY}`)
 
     this.color = this.d3.scaleOrdinal(this.d3.schemeCategory10);
     // var logged = this.apiData['loggedIn'].length
     // console.log(logged)
     // var logMin = this.d3.min(this.apiData)
-    console.log(this.loggedMin, this.loggedMax)
+    // console.log(this.loggedMin, this.loggedMax)
     var radiusScale = this.d3.scaleSqrt()
       // .domain([this.loggedMin, this.loggedMax])
       .domain([1,6])
       .range([10,60])
     this.simulation = this.d3.forceSimulation()
+      // DEFINITION OF FORCE 
+      // .force("name", defineTheForce)
+      // .force("center", this.d3.forceCenter(width / 2, height / 2))
+      .force("center", this.d3.forceCenter(startX, startY))
+      .force('x', this.d3.forceX(startX).strength(0.05))
+      .force('y', this.d3.forceY(startY).strength(0.05))
+
+      .force("collide", this.d3.forceCollide((d:any) => {
+        var res = d.counter * 15 + this.distance
+        console.log(`r=${res} (force)`)
+        return res;
+        // var result = radiusScale(d.loggedIn.length);
+        // console.log(result*10)
+        // return 50// result+10;
+      }))
+
+      // .attr('r', (d) => 
+      // {
+      //   var res = d.counter * 5
+      //   console.log(`r=${res}`)
+      //   return res;
+      // })
+
       // .force("link", this.d3.forceLink().id(function (d: any) {
       //   console.log(d)
       //   return d.id;
       // }))
       // .force("charge", this.d3.forceManyBody())
-      .force("center", this.d3.forceCenter(width / 2, height / 2))
+      // .force("center", this.d3.forceCenter(width / 2, height / 2))
       // .force("collide", this.d3.forceCollide((d) => { return 30 })
         // .iterations(10))
       
-      .force('x', this.d3.forceX(startX).strength(0.05))
-      .force('y', this.d3.forceY(startY).strength(0.05))
-      .force("collide", this.d3.forceCollide((d:any) => {
-        var result = radiusScale(d.loggedIn.length);
-        console.log(result*10)
-        return 60// result;
-      }))
+      // .force('x', this.d3.forceX(startX).strength(0.05))
+      // .force('y', this.d3.forceY(startY).strength(0.05))
+      // .force("collide", this.d3.forceCollide((d:any) => {
+      //   var result = radiusScale(d.loggedIn.length);
+      //   console.log(result*10)
+      //   return 60// result;
+      // }))
 
 
     
@@ -103,7 +126,7 @@ export class BubblesComponent implements OnInit, AfterViewInit {
     // console.log('tick2')//this.circles)
     this.circles
       .attr("cx", function (d) {
-        // console.log(d)
+        // console.log(d.x)
         return d.x;
       })
       .attr("cy", function (d) {
@@ -122,14 +145,27 @@ export class BubblesComponent implements OnInit, AfterViewInit {
       .data(this.apiData)
       .append('circle')
       .attr('cx', (d) => d.x)// 100)
-      .attr('cy', 200)// (d) => d.y)// 200)
-      .attr('r', (d) => d.loggedIn.length * 13)
-      .attr("fill", "green")
+      .attr('cy', (d) => d.y)// 200)
+      .attr('r', (d) => 
+      {
+        var res = d.counter * 15
+        console.log(`r=${res}`)
+        return res;
+      })
+      // .attr('r', (d) => d.counter * 13)
+      .style("stroke","green")
+      // .attr("fill", "green")
+      .style("stroke-width", 2)
+      .style("fill", "none");
     
-    this.svg.selectAll('g')
-      .append('text')
-      .text((d) => `${d.name} - ${d.loggedIn.length}`)
-      .attr('transform', (d,i) => { return 'translate(50,'+ 50 * i + ')' })
+    // this.svg.selectAll('g')
+    //   .append('text')
+    //   .text((d) => `${d.name} - ${d.loggedIn.length}`)
+    //   .attr('transform', (d,i) => { 
+    //     let x = 50,
+    //         y = 50;
+    //     return `translate(${x},${y})` 
+    //   })
       // .attr('transform', (d) => { 
       //   console.log(d.x)
       //   return 'translate(' + d.x + ','+ d.y +')' })
@@ -156,8 +192,8 @@ export class BubblesComponent implements OnInit, AfterViewInit {
         data => {
           this.apiData = data;
           console.log(this.apiData)
-          this.loggedMin = this.d3.min(this.apiData, d => d.loggedIn.length)
-          this.loggedMax = this.d3.max(this.apiData, d => d.loggedIn.length)
+          this.loggedMin = this.d3.min(this.apiData, d => d.counter)
+          this.loggedMax = this.d3.max(this.apiData, d => d.counter)
           console.log(this.loggedMin, this.loggedMax)
         }
       )
