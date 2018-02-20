@@ -1,0 +1,234 @@
+[{
+        "_id": "5a60b0d4c2be80001452dc4a",
+        "email": "pawel.kubik@wp.pl",
+        "name": "Paweł",
+        "description": "wiadomo kto :)",
+        "created_at": "2018-01-18T14:36:04.000Z",
+        "loggedIn": [
+            "2018-01-18T14:36:04.000Z"
+        ],
+        "counter": 1,
+        "confirmed": false
+    },
+    {
+        "_id": "5a60b6f3c2be80001452dc60",
+        "email": "agadom11@o2.pl",
+        "name": "Aga",
+        "description": "lalala",
+        "created_at": "2018-01-18T15:02:11.000Z",
+        "loggedIn": [
+            "2018-01-18T15:02:11.000Z",
+            "2018-01-19T15:02:11.000Z",
+            "2018-01-18T15:02:11.000Z",
+            "2018-01-19T15:02:11.000Z"
+        ],
+        "counter": 4,
+        "confirmed": false
+    },
+    {
+        "_id": "5a60fed9858ccb0014be0194",
+        "email": "basia.hacel@wp.pl",
+        "name": "Barbarella",
+        "description": ":*",
+        "created_at": "2018-01-18T20:08:57.000Z",
+        "confirmed": true,
+        "loggedIn": [
+            "2018-01-18T20:08:57.000Z",
+            "2018-01-18T20:08:57.000Z",
+            "2018-01-18T20:08:57.000Z",
+            "2018-01-18T20:08:57.000Z",
+            "2018-01-18T20:08:57.000Z",
+            "2018-01-18T20:08:57.000Z"
+        ],
+        "counter": 6
+    },
+    {
+        "_id": "5a606907818a8806582138d7",
+        "email": "pablo",
+        "name": "Pablito",
+        "description": "Admin/Creator",
+        "created_at": "2018-01-18T09:29:43.000Z",
+        "confirmed": true,
+        "loggedIn": [
+            "2018-01-18T09:29:43.000Z",
+            "2018-02-03T16:10:30.224Z",
+            "2018-02-03T16:22:29.265Z",
+            "2018-02-03T16:43:00.351Z"
+        ],
+        "counter": 4
+    },
+    {
+        "_id": "5a609de9c2be80001452dc45",
+        "email": "u2483354@mvrht.net",
+        "name": "Uladzimir",
+        "description": "qweqweqwewqewq",
+        "created_at": "2018-01-18T13:15:21.000Z",
+        "confirmed": true,
+        "loggedIn": [
+            "2018-01-18T13:15:21.000Z"
+        ],
+        "counter": 1
+    },
+    {
+        "_id": "5a80bbcbd5d4e4167cd10760",
+        "name": "d3user",
+        "email": "d3user",
+        "loggedIn": [
+            "2018-02-11T21:55:23.000Z",
+            "2018-02-11T22:15:23.000Z"
+        ],
+        "counter": 2,
+        "created_at": "2018-02-11T21:55:23.000Z",
+        "confirmed": true
+    },
+    {
+        "_id": "5a80bbcbd5d4e4167cd10760",
+        "name": "d3user 2",
+        "email": "d3user",
+        "loggedIn": [
+            "2018-02-11T21:55:23.000Z",
+            "2018-02-11T22:15:23.000Z",
+            "2018-02-12T09:15:23.000Z"
+        ],
+        "counter": 3,
+        "created_at": "2018-02-11T21:55:23.000Z",
+        "confirmed": true
+    },
+
+
+
+    {
+        "_id": "5a80bbcbd5d4e4167cd10760",
+        "name": "d3user 3",
+        "email": "d3user",
+        "loggedIn": [
+            "2018-02-11T21:55:23.000Z",
+            "2018-02-11T22:15:23.000Z"
+        ],
+        "counter": 2,
+        "created_at": "2018-02-11T21:55:23.000Z",
+        "confirmed": true
+    },
+    {
+        "_id": "5a80bbcbd5d4e4167cd10760",
+        "name": "d3user 4",
+        "email": "d3user",
+        "loggedIn": [
+            "2018-02-11T21:55:23.000Z",
+            "2018-02-11T22:15:23.000Z",
+            "2018-02-12T09:15:23.000Z"
+        ],
+        "counter": 3,
+        "created_at": "2018-02-11T21:55:23.000Z",
+        "confirmed": true
+    },
+    {
+        "_id": "5a60b6f3c2be80001452dc60",
+        "email": "agadom11@o2.pl",
+        "name": "Aga",
+        "description": "lalala",
+        "created_at": "2018-01-18T15:02:11.000Z",
+        "loggedIn": [
+            "2018-01-18T15:02:11.000Z",
+            "2018-01-19T15:02:11.000Z",
+            "2018-01-18T15:02:11.000Z",
+            "2018-01-19T15:02:11.000Z"
+        ],
+        "counter": 4,
+        "confirmed": false
+    },
+    {
+        "_id": "5a60fed9858ccb0014be0194",
+        "email": "basia.hacel@wp.pl",
+        "name": "Barbarella",
+        "description": ":*",
+        "created_at": "2018-01-18T20:08:57.000Z",
+        "confirmed": true,
+        "loggedIn": [
+            "2018-01-18T20:08:57.000Z",
+            "2018-01-18T20:08:57.000Z",
+            "2018-01-18T20:08:57.000Z",
+            "2018-01-18T20:08:57.000Z",
+            "2018-01-18T20:08:57.000Z",
+            "2018-01-18T20:08:57.000Z"
+        ],
+        "counter": 6
+    },
+    {
+        "_id": "5a606907818a8806582138d7",
+        "email": "pablo",
+        "name": "Pablito",
+        "description": "Admin/Creator",
+        "created_at": "2018-01-18T09:29:43.000Z",
+        "confirmed": true,
+        "loggedIn": [
+            "2018-01-18T09:29:43.000Z",
+            "2018-02-03T16:10:30.224Z",
+            "2018-02-03T16:22:29.265Z",
+            "2018-02-03T16:43:00.351Z"
+        ],
+        "counter": 4
+    },
+    {
+        "_id": "5a609de9c2be80001452dc45",
+        "email": "u2483354@mvrht.net",
+        "name": "Uladzimir",
+        "description": "qweqweqwewqewq",
+        "created_at": "2018-01-18T13:15:21.000Z",
+        "confirmed": true,
+        "loggedIn": [
+            "2018-01-18T13:15:21.000Z"
+        ],
+        "counter": 1
+    },
+    {
+        "_id": "5a80bbcbd5d4e4167cd10760",
+        "name": "d3user",
+        "email": "d3user",
+        "loggedIn": [
+            "2018-02-11T21:55:23.000Z",
+            "2018-02-11T22:15:23.000Z"
+        ],
+        "counter": 2,
+        "created_at": "2018-02-11T21:55:23.000Z",
+        "confirmed": true
+    },
+    {
+        "_id": "5a80bbcbd5d4e4167cd10760",
+        "name": "d3user 2",
+        "email": "d3user",
+        "loggedIn": [
+            "2018-02-11T21:55:23.000Z",
+            "2018-02-11T22:15:23.000Z",
+            "2018-02-12T09:15:23.000Z"
+        ],
+        "counter": 3,
+        "created_at": "2018-02-11T21:55:23.000Z",
+        "confirmed": true
+    },
+    {
+        "_id": "5a80bbcbd5d4e4167cd10760",
+        "name": "d3user 3",
+        "email": "d3user",
+        "loggedIn": [
+            "2018-02-11T21:55:23.000Z",
+            "2018-02-11T22:15:23.000Z"
+        ],
+        "counter": 2,
+        "created_at": "2018-02-11T21:55:23.000Z",
+        "confirmed": true
+    },
+    {
+        "_id": "5a80bbcbd5d4e4167cd10760",
+        "name": "d3user 4",
+        "email": "d3user",
+        "loggedIn": [
+            "2018-02-11T21:55:23.000Z",
+            "2018-02-11T22:15:23.000Z",
+            "2018-02-12T09:15:23.000Z"
+        ],
+        "counter": 3,
+        "created_at": "2018-02-11T21:55:23.000Z",
+        "confirmed": true
+    }
+]

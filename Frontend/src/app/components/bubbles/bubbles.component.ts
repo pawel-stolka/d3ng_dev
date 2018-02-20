@@ -19,9 +19,9 @@ export class BubblesComponent implements OnInit, AfterViewInit {
   simulation;
   circles;
   svgStart;
-  distance
-  loggedMin;
-  loggedMax;
+  distance;
+  valueMin;
+  valueMax;
   
   constructor(
     element: ElementRef,
@@ -46,36 +46,19 @@ export class BubblesComponent implements OnInit, AfterViewInit {
     this.distance = 2;
     this.orientSvg()
 
-    let startX = this.svgStart.centerX;// width/2;
-    let startY = this.svgStart.centerY;//  height/2;
-    // console.log(this.svgStart)
-    console.log(`startX, startY: ${startX}, ${startY}`)
-
-    this.color = this.d3.scaleOrdinal(this.d3.schemeCategory10);
+    
     // var logged = this.apiData['loggedIn'].length
     // console.log(logged)
     // var logMin = this.d3.min(this.apiData)
     // console.log(this.loggedMin, this.loggedMax)
-    var radiusScale = this.d3.scaleSqrt()
-      // .domain([this.loggedMin, this.loggedMax])
-      .domain([1,6])
-      .range([10,60])
-    this.simulation = this.d3.forceSimulation()
-      // DEFINITION OF FORCE 
-      // .force("name", defineTheForce)
-      // .force("center", this.d3.forceCenter(width / 2, height / 2))
-      .force("center", this.d3.forceCenter(startX, startY))
-      .force('x', this.d3.forceX(startX).strength(0.05))
-      .force('y', this.d3.forceY(startY).strength(0.05))
+    // var exArr = [2, 4, 12, 2];
+    // var exMin = this.d3.min(exArr)//, d => d.counter)
+    // var exMax = this.d3.max(exArr)//, d => d.counter)
+    // console.log(exMin, exMax)
 
-      .force("collide", this.d3.forceCollide((d:any) => {
-        var res = d.counter * 15 + this.distance
-        console.log(`r=${res} (force)`)
-        return res;
-        // var result = radiusScale(d.loggedIn.length);
-        // console.log(result*10)
-        // return 50// result+10;
-      }))
+    // var valueMin = this.d3.min(this.apiData, d => d.loggedIn)
+    // var valueMax = this.d3.max(this.apiData, d => d.loggedIn)
+    
 
       // .attr('r', (d) => 
       // {
@@ -149,7 +132,7 @@ export class BubblesComponent implements OnInit, AfterViewInit {
       .attr('r', (d) => 
       {
         var res = d.counter * 15
-        console.log(`r=${res}`)
+        // console.log(`r=${res}`)
         return res;
       })
       // .attr('r', (d) => d.counter * 13)
@@ -178,6 +161,39 @@ export class BubblesComponent implements OnInit, AfterViewInit {
 
   ready() {
     console.log('ready')
+    let startX = this.svgStart.centerX;// width/2;
+    let startY = this.svgStart.centerY;//  height/2;
+    // console.log(this.svgStart)
+    console.log(`startX, startY: ${startX}, ${startY}`)
+
+    this.color = this.d3.scaleOrdinal(this.d3.schemeCategory10);
+
+    console.log(this.apiData)
+    console.log(this.valueMin, this.valueMax)
+    var radiusScale = this.d3.scaleSqrt()
+      // .domain([this.loggedMin, this.loggedMax])
+      // .domain([radMin,radMax])
+      .domain([this.valueMin, this.valueMax])
+      .range([10,100])
+    this.simulation = this.d3.forceSimulation()
+      // DEFINITION OF FORCE 
+      // .force("name", defineTheForce)
+      // .force("center", this.d3.forceCenter(width / 2, height / 2))
+      .force("center", this.d3.forceCenter(startX, startY))
+      .force('x', this.d3.forceX(startX).strength(0.05))
+      .force('y', this.d3.forceY(startY).strength(0.05))
+
+      .force("collide", this.d3.forceCollide((d:any) => {
+        var res = d.counter * 15 + this.distance
+        // console.log(`r=${res} (force)`)
+        var res2 = radiusScale(d.loggedIn.length)//counter)
+        console.log(`res2: ${res2}`)
+        return res;
+        // var result = radiusScale(d.loggedIn.length);
+        // console.log(result*10)
+        // return 50// result+10;
+      }))
+
     this.simulation.nodes(this.apiData)
       .on('tick', () => { return this.ticked()})//this.apiData)})
   }
@@ -192,9 +208,9 @@ export class BubblesComponent implements OnInit, AfterViewInit {
         data => {
           this.apiData = data;
           console.log(this.apiData)
-          this.loggedMin = this.d3.min(this.apiData, d => d.counter)
-          this.loggedMax = this.d3.max(this.apiData, d => d.counter)
-          console.log(this.loggedMin, this.loggedMax)
+          this.valueMin = this.d3.min(this.apiData, d => d.loggedIn.length)
+          this.valueMax = this.d3.max(this.apiData, d => d.loggedIn.length)
+          console.log(this.valueMin, this.valueMax)
         }
       )
   }
