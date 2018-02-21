@@ -57,13 +57,13 @@ export class PieComponent implements OnInit {
 
     var arc = this.d3.arc()
       .outerRadius(radius - 10)
-      .innerRadius(0);
+      .innerRadius(50);
 
       console.log(arc)
 
     var labelArc = this.d3.arc()
-      .outerRadius(radius - 40)
-      .innerRadius(radius - 40);
+      .outerRadius(radius - 100)
+      .innerRadius(radius - 50);
 
     var pie = this.d3.pie()
       .sort(null)
@@ -90,9 +90,14 @@ export class PieComponent implements OnInit {
 
     g.append("text")
       .attr("transform", function (d: any) {
-        return "translate(" + labelArc.centroid(d) + ")";
+        var value = labelArc.centroid(d);
+        console.log(value)
+        return "translate(" + value + ")";
       })
       .attr("dy", ".35em")
+      .attr('class','pie')
+      // .attr('font-size', '20px')
+      .attr('fill', "greenyellow")
       .text(function (d: any) {
         return d.data;
       });
