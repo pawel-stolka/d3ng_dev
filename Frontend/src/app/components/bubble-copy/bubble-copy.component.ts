@@ -113,8 +113,9 @@ export class BubbleCopyComponent implements OnInit {
         .selectAll('circle')
         .transition()
         .duration(250)
-        .style("stroke-dasharray", ("10,5"))
+        // .style("stroke-dasharray", ("10,5"))
         .attr('r', (d) => { return d.counter * 15 + 5 })
+        .style("cursor", "pointer")  
         // .style("cursor", "none")    
         console.log('in!')
 
@@ -142,8 +143,17 @@ export class BubbleCopyComponent implements OnInit {
         .style("stroke-width", 2)
         // .style("stroke-dasharray", ("10,5"))
         .attr('r', (d) => { return d.counter * 15})
-        // .style("cursor", "none")    
+        .style("cursor", "none")    
         console.log('out.')
+
+        let selText = svg.selectAll('text')
+        .text((d) => {
+          let fullname = d.name,
+              logged = d.loggedIn.length;
+          let firLet = fullname.substr(0,1)
+  
+          return `${firLet} ${logged}`;
+        })
       })
 
     // svg

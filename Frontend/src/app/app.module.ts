@@ -23,6 +23,7 @@ import { BubblesComponent } from './components/bubbles/bubbles.component';
 import { Bubbles4Component } from './components/bubbles4/bubbles4.component';
 import { BubbleTestComponent } from './components/bubbletest/bubbletest.component';
 import { BubbleCopyComponent } from './components/bubble-copy/bubble-copy.component';
+import { PieComponent } from './components/pie/pie.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -35,7 +36,8 @@ const appRoutes: Routes = [
   { path: 'bubbles', component: BubblesComponent },
   { path: 'bubbles4', component: Bubbles4Component },
   { path: 'bubbletest', component: BubbleTestComponent },
-  { path: 'bubbleCopy', component: BubbleCopyComponent }
+  { path: 'bubbleCopy', component: BubbleCopyComponent },
+  { path: 'pie', component: PieComponent }
 ]
 
 @NgModule({
@@ -51,6 +53,7 @@ const appRoutes: Routes = [
     Bubbles4Component,
     BubbleTestComponent,
     BubbleCopyComponent,
+    PieComponent,
     // EventsComponent
   ],
   imports: [
