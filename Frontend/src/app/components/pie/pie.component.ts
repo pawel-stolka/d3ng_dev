@@ -89,6 +89,7 @@ export class PieComponent implements OnInit {
     //     console.log(res)
     //     return res;
     //   });
+    // see => https://stackoverflow.com/questions/40919385/d3-ts-and-angular-2
 
     g.append("text")
       .attr("transform", function (d: any) {
