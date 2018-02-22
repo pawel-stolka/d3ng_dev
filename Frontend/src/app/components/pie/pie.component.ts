@@ -82,11 +82,13 @@ export class PieComponent implements OnInit {
       .enter().append("g")
       .attr("class", "arc");
 
-    g.append("path")
-      .attr("d", arc)
-      .style("fill", function (d:any) {
-        return color(d.data);
-      });
+    // g.append("path")
+    //   .attr("d", <any>arc)
+    //   .style("fill", function (d:any) {
+    //     let res = color(d.data);
+    //     console.log(res)
+    //     return res;
+    //   });
 
     g.append("text")
       .attr("transform", function (d: any) {

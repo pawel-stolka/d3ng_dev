@@ -74,7 +74,7 @@ export class BubbleCopyComponent implements OnInit {
         return d.y;
       });
 
-      this.textElems
+    this.textElems
       .attr("x", function (d) {
         // console.log(d.x)
         return d.x;
@@ -96,7 +96,7 @@ export class BubbleCopyComponent implements OnInit {
       .append('circle')
       .attr('cx', (d) => d.x)// 100)
       .attr('cy', (d) => d.y)// 200)
-      .attr('r', (d) => d.counter * 15)
+      .attr('r', (d) => d.loggedIn.length *37)
       .style("stroke","green")
       .style("stroke-width", 2)
       // .style("stroke-dasharray", ("10,5")) // make the stroke dashed
@@ -114,7 +114,7 @@ export class BubbleCopyComponent implements OnInit {
         .transition()
         .duration(250)
         // .style("stroke-dasharray", ("10,5"))
-        .attr('r', (d) => { return d.counter * 15 + 5 })
+        .attr('r', (d) => { return d.loggedIn.length*37 + 5 })
         .style("cursor", "pointer")  
         // .style("cursor", "none")    
         console.log('in!')
@@ -136,24 +136,24 @@ export class BubbleCopyComponent implements OnInit {
         let circles = svg
         // .append('circle')
         // .select(this)
-        .selectAll('circle')
-        .transition()
-        .duration(250)
-        .style("stroke","red")
-        .style("stroke-width", 2)
-        // .style("stroke-dasharray", ("10,5"))
-        .attr('r', (d) => { return d.counter * 15})
-        .style("cursor", "none")    
+          .selectAll('circle')
+          .transition()
+          .duration(250)
+          .style("stroke","red")
+          .style("stroke-width", 2)
+          // .style("stroke-dasharray", ("10,5"))
+          .attr('r', (d) => { return d.loggedIn.length *37})
+          .style("cursor", "none")    
         console.log('out.')
 
         let selText = svg.selectAll('text')
-        .text((d) => {
-          let fullname = d.name,
-              logged = d.loggedIn.length;
-          let firLet = fullname.substr(0,1)
-  
-          return `${firLet} ${logged}`;
-        })
+          .text((d) => {
+            let fullname = d.name,
+                logged = d.loggedIn.length;
+            let firLet = fullname.substr(0,1)
+    
+            return `${firLet} ${logged}`;
+          })
       })
 
     // svg
@@ -245,7 +245,7 @@ export class BubbleCopyComponent implements OnInit {
       .force('y', this.d3.forceY(startY).strength(0.05))
 
       .force("collide", this.d3.forceCollide((d:any) => {
-        var res = d.counter * 15 + this.distance
+        var res = d.loggedIn.length * 37 + this.distance
         // console.log(`r=${res} (force)`)
         var res2 = radiusScale(d.loggedIn.length)//counter)
         console.log(`res2: ${res2}`)
