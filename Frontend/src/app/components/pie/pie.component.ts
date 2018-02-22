@@ -83,10 +83,12 @@ export class PieComponent implements OnInit {
       .attr("class", "arc");
 
     g.append("path")
-      .attr("d", arc)
+      .attr("d", <any>arc)
       .style("fill", function (d:any) {
         return color(d.data);
       });
+
+      // see => https://stackoverflow.com/questions/40919385/d3-ts-and-angular-2
 
     g.append("text")
       .attr("transform", function (d: any) {
